@@ -171,7 +171,7 @@
        |  +---w sort?          string
        |  +---w where?         string
        +--ro output
-          +--ro collection?   &lt;anyxml&gt;</artwork>
+          +--ro pageable-list?   &lt;anydata&gt;</artwork>
         </figure>
 
         <t>The "datastore" parameter indicates the datastore that is the
@@ -306,7 +306,7 @@ module ietf-netconf-list-pagination {
 
      Editor:   ";
   description
-    "This module define a new operation -- &lt;get-collection&gt;
+    "This module define a new operation -- &lt;get-pageable-list&gt;
      to support YANG based pagination.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -581,7 +581,7 @@ module ietf-netconf-list-pagination {
       }
     }
     output {
-      anyxml pageable-list {
+      anydata pageable-list {
         description
           "Return the list entries that were requested and matched
            the filter criteria (if any). An empty data container
