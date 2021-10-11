@@ -26,7 +26,7 @@
     List Pagination</title>
 
     <author fullname="Kent Watsen" initials="K." surname="Watsen">
-      <organization>Watsen Network</organization>
+      <organization>Watsen Networks</organization>
       <address>
         <email>kent+ietf@watsen.net</email>
       </address>
@@ -128,6 +128,14 @@
 
         <t/>
       </section>
+
+      <section title="Conventions"> <!-- KENT: TURE? -->
+          <t>Various examples used in this document use a placeholder
+            value for binary data that has been base64 encoded (e.g.,
+            "BASE64VALUE=“).  This placeholder value is used as real
+            base64 encoded structures are often many lines long and
+            hence distracting to the example being presented.<.t>
+        </section>
     </section>
 
     <!-- intro -->
@@ -547,7 +555,7 @@ module ietf-netconf-list-pagination {
           type string {
             length "1..max" {
               description
-                "The name of a descendent node to sort on.  For
+                "The name of a descendant node to sort on.  For
                  &lsquo;Config false&rsquo; lists and leaf-lists, the node SHOULD
                   have the &rsquo;TBD&rsquo; extension indicating that it has been
                   indexed, enabling efficient sorts.";
