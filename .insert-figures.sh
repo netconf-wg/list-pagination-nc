@@ -1,7 +1,7 @@
 #!/bin/bash
 
-FOLD=rfcfold
-#FOLD=../../ietf-tools/rfcfold/rfcfold
+#FOLD=rfcfold
+FOLD=../../ietf-tools/rfcfold/rfcfold
 
 # make sure input params are good
 if [ "$#" == "0" ]; then

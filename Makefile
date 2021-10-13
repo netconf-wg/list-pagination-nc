@@ -40,7 +40,7 @@ clean:
 	-rm -f $(next).txt $(next).html
 	-rm -f $(draft)-[0-9][0-9].xml
 	-rm -f ietf-*\@202*.yang
-	-rm -f refs/ietf-*\@202*.yang
+	-rm -f includes/ietf-*\@202*.yang
 	-rm -f metadata.min.js
 ifeq (md,$(draft_type))
 	-rm -f $(draft).xml
@@ -52,14 +52,10 @@ endif
 
 $(next).xml: $(draft).xml
 	sed -e"s/$(basename $<)-latest/$(basename $@)/" -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" $< > $@
-	#sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-sztp-csr.yang > ietf-sztp-csr\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/2019-03-07/$(shell date +%Y-%m-%d)/" ../../netmod-wg/yang-data-ext/ietf-yang-structure-ext.yang > refs/ietf-yang-structure-ext\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ../zero-touch/ietf-sztp-bootstrap-server.yang > refs/ietf-sztp-bootstrap-server\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ../crypto-types/ietf-crypto-types.yang > refs/ietf-crypto-types\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ../keystore/ietf-keystore.yang > refs/ietf-keystore\@$(shell date +%Y-%m-%d).yang
-	#cd refs && ./validate-all.sh && ./gen-trees.sh && cd ..
+	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-list-pagination-nc.yang > ietf-list-pagination-nc\@$(shell date +%Y-%m-%d).yang
+	cd includes && ./validate-all.sh && ./gen-trees.sh && cd ..
 	./.insert-figures.sh $@ > tmp && mv tmp $@
-	@rm -f refs/*-tree*.txt
+	@rm -f includes/tree-*.txt
 
 .INTERMEDIATE: $(draft).xml
 %.xml: %.md

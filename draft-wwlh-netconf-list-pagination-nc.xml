@@ -13,8 +13,8 @@
 <?rfc-ext allow-markup-in-artwork="yes" ?>
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
-<rfc category="std" docName="draft-wwlh-netconf-list-pagination-nc-02"
-     ipr="trust200902">
+<rfc category="std" docName="draft-wwlh-netconf-list-pagination-nc-latest"
+     ipr="trust200902" consensus="true">
   <front>
     <title abbrev="NETCONF Pagination Support">NETCONF Extensions to Support
     List Pagination</title>
@@ -62,46 +62,37 @@
       </address>
     </author>
 
-    <date year="2021"/>
-
+    <date/>
     <area>OPS Area</area>
-
     <workgroup>NETCONF Working Group</workgroup>
 
     <abstract>
-      <t>In some circumstance, a server may contain many instances of a
-      particular YANG list or leaf-list. Retrieval of the entire list or
-      leaf-list at once can be extremely inefficient.</t>
-
-      <t>This document defines a YANG data model with NETCONF protocol
-      operation extension for YANG based Pagination to allow a client to
-      iterate through a large list, in a manner that is most efficient for the
-      application.</t>
-
-      <t>The YANG data model in this document conforms to the Network
-      Management Datastore Architecture defined in RFC 8342.</t>
+      <t>This document defines a mapping of the list pagination mechanism
+        defined in <xref target="I-D.wwlh-netconf-list-pagination"/>
+        to NETCONF <xref target="RFC6241"/>.</t>
+      <t>This document updates <xref target="RFC6241"/>, to augment the &lt;get&gt; and
+        &lt;get-config&gt; "rpc" statements, and <xref target="RFC8526"/>, to augment the
+        &lt;get-data&gt; "rpc" statement, to define input parameters
+        necessary for list pagination.</t>
     </abstract>
   </front>
 
   <middle>
     <section anchor="intro" title="Introduction">
-      <t>There is a need for standard mechanisms to control the filtering,
-      sorting, and retrieval of data from the server. A server may contain
-      many instances of a particular YANG list. Retrieval of the entire list
-      or leaf-list at once can be extremely inefficient.</t>
+      <t>This document defines a mapping of the list pagination mechanism
+        defined in <xref target="I-D.wwlh-netconf-list-pagination"/>
+        to NETCONF <xref target="RFC6241"/>.</t>
 
-      <t>This document defines a YANG module for Pagination mechanisms which
-      allow a client to iterate through a large list or leaf-list, in a manner
-      that is most efficient for the application.</t>
+      <t>This document updates <xref target="RFC6241"/> and <xref target="RFC8526"/>,
+        as described in <xref target="updates"/>.</t>
 
       <t>While the pagination mechanism defined in this document is designed
-      for the NETCONF protocol <xref target="RFC6241"/>, the RPC MAY be used
-      by the RESTCONF protocol <xref target="RFC8040"/> if the RESTCONF server
-      implements the "ietf-yang-list-pagination" module.</t>
+      for the NETCONF protocol <xref target="RFC6241"/>, the augmented RPCs
+      MAY be used by the RESTCONF protocol <xref target="RFC8040"/> if the
+      RESTCONF server implements the "ietf-list-pagination-nc" module.</t>
 
       <t>The YANG data model in this document conforms to the Network
-      Management Datastore Architecture defined in <xref
-      target="RFC8342"/></t>
+      Management Datastore Architecture defined in <xref target="RFC8342"/></t>
 
       <section title="Terminology">
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -109,118 +100,83 @@
         "OPTIONAL" in this document are to be interpreted as described in BCP
         14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only
         when, they appear in all capitals, as shown here.</t>
-
+<!--
         <t>The following terms are defined in <xref target="RFC8342"/> <xref
         target="RFC7950"/> and are not redefined here:</t>
 
         <t><list style="symbols">
             <t>server</t>
-
             <t>startup configuration datastore</t>
-
             <t>candidate configuration datastore</t>
-
             <t>running configuration datastore</t>
-
             <t>intended configuration datastore</t>
-
             <t>operational state datastore</t>
-
             <t>conventional configuration datastore</t>
-
             <t>datastore schema</t>
-
             <t>RPC operation</t>
           </list></t>
 
         <t>The following terms are defined in this document as follows:</t>
-
         <t/>
+-->
       </section>
 
-      <section title="Conventions"> <!-- KENT: TURE? -->
-          <t>Various examples used in this document use a placeholder
-            value for binary data that has been base64 encoded (e.g.,
-            "BASE64VALUE=“).  This placeholder value is used as real
-            base64 encoded structures are often many lines long and
-            hence distracting to the example being presented.<.t>
-        </section>
+      <section title="Conventions">
+        <t>Various examples used in this document use a placeholder
+          value for binary data that has been base64 encoded (e.g.,
+          "BASE64VALUE=“).  This placeholder value is used as real
+          base64 encoded structures are often many lines long and
+          hence distracting to the example being presented.</t>
+      </section>
+    </section> <!-- intro -->
+
+    <section title="Updates to NETCONF operations" anchor="updates">
+      <section title="Updates to RFC 6241">
+        <t>The &lt;get&gt; and &lt;get-config&gt; rpc statements are
+          augmented to accept additional input parameters, as described
+          in <xref target="solution"/>.</t>
+      </section>
+      <section title="Updates to RFC 8526">
+        <t>The &lt;get-data&gt; rpc statement is augmented to
+          accept additional input parameters, as described in
+          in <xref target="solution"/>.</t>
+      </section>
+    </section> <!-- updates -->
+
+    <section title="List Pagination for NETCONF" anchor="solution">
+      <t>In order for NETCONF to support <xref target="I-D.wwlh-netconf-list-pagination"/>,
+      this document extends the operations &lt;get&gt;, &lt;get-config&gt; and &lt;get-data&gt;
+      to include additional input parameters and output annotations.</t>
+
+      <t>The updated operations accept a content filter parameter, similar to the
+      "filter" parameter of &lt;get-config&gt;, but includes nodes for "list" and
+      "leaf-list" filtering.</t>
+
+      <t>The content filter parameter is used to specify the YANG list or leaf-list
+      that is to be retrieved. This must be a path expression used to represent a
+      list or leaf-list data node.</t>
+
+      <t>The following tree diagram <xref target="RFC8340"/> illustrates the
+        "ietf-netconf-list-pagination" module:</t>
+      <t>
+        <figure>
+         <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
+]]></artwork>
+        </figure>
+      </t>
+      <t>Comments:</t>
+      <ul>
+        <li>This module augments three NETCONF "rpc" statements: get, get-config,
+          and get-data.</li>
+        <li>The "get" and "get-config" augments are against the YANG module
+          defined in <xref target="RFC6241"/>.  The "get-data" augment is
+          against the YANG module defined in <xref target="RFC8526"/>.</li>
+      </ul>
     </section>
 
-    <!-- intro -->
-
-    <section title="NETCONF operation">
-      <t>This document extends existing operations &lt;get-config&gt; and
-      &lt;get&gt; to support YANG based pagination. These operations use
-      enhanced filtering features to retrieve data from a specific
-      datastore.</t>
-
-      <t>These operations accepts a content filter parameter, similar to the
-      "filter" parameter of &lt;get-config&gt;, but uses explicit nodes for
-      list filtering or leaf-list filtering.The content filter parameter is
-      used to specify that YANG list that will be retrieved. This must be a
-      path expression used to represent a list data node.</t>
-
-      <figure>
-        <artwork>module: ietf-netconf-list-pagination
-  augment /nc:get-config/nc:input:
-    +---w list-pagination
-       +---w limit?       union
-       +---w offset?      union
-       +---w direction?   enumeration
-       +---w sort?        union
-       +---w where?       yang:xpath1.0
-  augment /nc:get/nc:input:
-    +---w list-pagination
-       +---w limit?       union
-       +---w offset?      union
-       +---w direction?   enumeration
-       +---w sort?        union
-       +---w where?       yang:xpath1.0</artwork>
-      </figure>
-
-      <t>In these explicit nodes, the "limit" parameter can be used to specify
-      the maximum number of list entries to return. The value of the "count"
-      parameter is either an integer greater than or equal to 1, or the string
-      "unbounded". The string "unbounded" is the default value.</t>
-
-      <t>The "offset" parameter can be used to specify the first list item to
-      return in response to NETCONF/Request requests on instances of a
-      particular YANG list. YANG list instances are numbered with consecutive
-      integers from 1 to the number of YANG list instances.</t>
-
-      <t>The value of the "offset" parameter is an integer greater than or
-      equal to 1. The default value is 1.</t>
-
-      <t>If the "where" parameter is specified, the "offset" parameter MUST
-      start with a set of selected list resources picked by using "where"
-      parameter and specify the first list item resource to return.</t>
-
-      <t>The "direction" parameter can be used to specify the direction
-      relative to the ‘sort' order through list or leaf-list.</t>
-
-      <t>The "sort" parameter is used to indicates how the entries in a list
-      are to be sorted. By default, the value of the "sort" is default, i.e.,
-      for 'ordered-by user' lists and leaf-lists, the default order is the
-      user-configured order; for 'ordered-by system' lists and leaf-lists, the
-      default order is specified by the system.</t>
-
-      <t>The "where" parameter is used to specify the boolean filter to select
-      data instances to return from the list or leaf-list target. The filter
-      element contains boolean XPATH expression. The filter output is a set of
-      selected list items. The server determines which node instances are
-      included (or potentially included) in the filter output, and which node
-      instances are excluded (pruned) from the filter output.</t>
-
-      <t>The selected list instances are numbered with consecutive integers
-      from 1 to the number of list instances.</t>
-
-      <t>The expected processing order: where -&gt; sort -&gt; direction -&gt;
-      offset -&gt; limit.</t>
-    </section>
-
-    <section title="YANG Module for List Pagination">
-      <t>The "ietf-netconf-list-pagination" module defines conceptual
+    <section title="YANG Module for List Pagination in NETCONF">
+      <t>The "ietf-netconf-list-pagination-nc" module defines conceptual
       definitions within groupings, which are not meant to be implemented as
       datastore contents by a server.</t>
 
@@ -228,205 +184,49 @@
       <xref target="RFC6243"/>, <xref target="RFC6991"/>, and <xref
       target="RFC8342"/>.</t>
 
-      <figure>
-        <artwork>&lt;CODE BEGINS&gt; file "ietf-netconf-list-pagination@2021-10-03.yang"
-module ietf-netconf-list-pagination {
-  yang-version 1.1;
-  namespace "urn:ietf:params:xml:ns:yang:ietf-netconf-list-pagination";
-  prefix cp;
-
-  import ietf-yang-types {
-    prefix yang;
-    reference
-      "RFC 6991: Common YANG Data Types";
-  }
-  import ietf-yang-metadata {
-    prefix md;
-    reference
-      "RFC 7952: Defining and Using Metadata with YANG";
-  }
-  import ietf-netconf {
-    prefix nc;
-    reference
-      "RFC 6241: Network Configuration Protocol (NETCONF)";
-  }
-
-  organization
-    "IETF NETCONF (Network Configuration) Working Group";
-  contact
-    "WG Web:   &lt;http://tools.ietf.org/wg/netconf/&gt;
-        WG List:  &lt;mailto:netconf@ietf.org&gt;
-        Editor:
-        Editor:
-        Editor:   ";
-  description
-    "This module define a new operation -- &lt;get-collection&gt;
-        to support YANG based pagination.
-        The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
-        NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
-        'MAY', and 'OPTIONAL' in this document are to be interpreted as
-        described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
-        they appear in all capitals, as shown here.
-        Copyright (c) 2019 IETF Trust and the persons identified as
-        authors of the code.  All rights reserved.
-        Redistribution and use in source and binary forms, with or
-        without modification, is permitted pursuant to, and subject to
-        the license terms contained in, the Simplified BSD License set
-        forth in Section 4.c of the IETF Trust's Legal Provisions
-        Relating to IETF Documents
-        (https://trustee.ietf.org/license-info).
-        This version of this YANG module is part of RFC 8526; see
-        the RFC itself for full legal notices.
-
-        Change Log:
-        - changed get-pagable -&gt;  get-pageable
-        - renamed count -&gt; limit
-        - renamed skip -&gt; offset
-        - added import ietf-yang-metadata
-        - added md:annotation remaining
-        ";
-
-  revision 2021-08-27 {
-    description
-      "Dervied from ietf-netconf-list-pagination@2020-10-30.";
-    reference
-      "RFC XXXX: YANG Based Pagination.";
-  }
-  md:annotation remaining {
-    type uint32;
-    description
-      "This annotation contains the number of elements remains
-           in a result set from current 'offset' and after a 'limit' or 'sublist-limit'
-           operation. If no elements were removed, this annotation
-           MUST NOT appear.  The minimum value (0), which never
-           occurs in normal operation, is reserved to represent
-           'unknown'.  The maximum value (2^32-1) is reserved to
-           represent any value greater than or equal to 2^32-1
-           elements.";
-  }
-
-  grouping pagination-parameters {
-    container list-pagination {
-      description
-        "List Pagination Parameters.";
-    leaf limit {
-      type union {
-        type uint32;
-        type string {
-          pattern 'unbounded';
-        }
-      }
-      default "unbounded";
-      description
-        "The maximum number of list entries to return. The
-         value of the 'limit' parameter is either an integer
-         greater than or equal to 1, or the string 'unbounded'.
-         The string 'unbounded' is the default value.";
-    }
-    leaf offset {
-      type union {
-        type uint32;
-        type string {
-          pattern 'none';
-        }
-      }
-      default "none";
-      description
-        "The first list item to return.
-         the 'offset' parameter is either an integer greater than
-         or equal to 1, or the string 'unbounded'.  The string
-         'none' is the default value.";
-    }
-    leaf direction {
-      type enumeration {
-        enum forward;
-        enum reverse;
-      }
-      default "forward";
-      description
-        "Direction relative to the 'sort' order through list
-         or leaf-list. It can be forward direction or reverse
-         direction.";
-    }
-    leaf sort {
-      type union {
-        type string {
-          length "1..max" {
-            description
-              "The name of a descendent node to sort on.  For
-               'config false' lists and leaf-lists, the node SHOULD
-               have the 'indexed' extension indicating that it has been
-               indexed, enabling efficient sorts.";
-          }
-        }
-        type enumeration {
-          enum default {
-            description
-              "Indicates that the 'default' order is assumed.  For
-               'ordered-by user' lists and leaf-lists, the default order
-               is the user-configured order.  For 'ordered-by system'
-               lists and leaf-lists, the default order is specified by the
-               system.";
-          }
-        }
-      }
-      default "default";
-      description
-        "Indicates how the entries in a list are to be sorted.";
-    }
-    leaf where {
-      type yang:xpath1.0;
-      description
-        "The boolean filter to select data instances to return from
-         the list or leaf-list target.  The Xpath expression MAY be
-         constrained either server-wide, by datastore, by 'config'
-         status, or per list or leaf-list.  Details regarding how
-         constraints are communicated are TBD.  This parameter
-         is optional; no filtering is applied when it is not
-         specified.";
-    }
-   }
-  }
-
-  augment "/nc:get-config/nc:input" {
-    uses pagination-parameters;
-  }
-  augment "/nc:get/nc:input" {
-    uses pagination-parameters;
-  }
-}
-&lt;CODE ENDS&gt;</artwork>
-      </figure>
+      <t>
+        <figure>
+          <preamble>&lt;CODE BEGINS&gt; file "ietf-list-pagination-nc@YYYY-MM-DD.yang"</preamble>
+          <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(ietf-list-pagination-nc@YYYY-MM-DD.yang)
+]]></artwork>
+          <postamble>&lt;CODE ENDS&gt;</postamble>
+        </figure>
+      </t>
     </section>
 
     <section title="IANA Considerations">
-      <section title="The &quot;IETF XML&quot; Registry">
+      <section title='The "IETF XML" Registry'>
         <t>This document registers one URI in the "ns" subregistry of the IETF
         XML Registry <xref target="RFC3688"/> maintained at <eref
         target="https://www.iana.org/assignments/xml-registry/xml-registry.xhtml#ns"/>.
         Following the format in <xref target="RFC3688"/>, the following
         registration is requested:</t>
-
-        <t><figure align="center">
-            <artwork>  URI: urn:ietf:params:xml:ns:yang:ietf-netconf-list-pagination
-  Registrant Contact: The IESG.
-  XML: N/A, the requested URI is an XML namespace.</artwork>
-          </figure></t>
+        <t>
+          <figure align="center">
+            <artwork>
+URI: urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
+Registrant Contact: The IESG.
+XML: N/A, the requested URI is an XML namespace.</artwork>
+          </figure>
+        </t>
       </section>
 
-      <section title="The &quot;YANG Module Names&quot; Registry">
+      <section title='The "YANG Module Names" Registry'>
         <t>This document registers one YANG module in the YANG Module Names
         registry <xref target="RFC6020"/> maintained at <eref
         target="https://www.iana.org/assignments/yang-parameters/yang-parameters.xhtml"/>.
         Following the format defined in <xref target="RFC6020"/>, the below
         registration is requested:</t>
-
-        <t><figure align="center">
-            <artwork>  name: ietf-restconf-list-pagination
-  namespace: urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination
-  prefix: rlpg
-  RFC: xxxx</artwork>
-          </figure></t>
+        <t>
+          <figure align="center">
+            <artwork>
+name: ietf-list-pagination-nc
+namespace: urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
+prefix: pgnc
+RFC: XXXX</artwork>
+          </figure>
+        </t>
       </section>
     </section>
 
@@ -455,40 +255,37 @@ module ietf-netconf-list-pagination {
 
   <back>
     <references title="Normative References">
-      <?rfc include="reference.RFC.2119.xml"?>
-
+      <?rfc include="reference.RFC.2119.xml"?> <!-- Terms -->
       <?rfc include="reference.RFC.3688.xml"?>
-
-      <?rfc include="reference.RFC.6020.xml"?>
-
+      <?rfc include="reference.RFC.6020.xml"?> <!-- YANG orig -->
       <?rfc include="reference.RFC.6241.xml"?>
-
       <?rfc include="reference.RFC.6242.xml"?>
-
       <?rfc include="reference.RFC.6243.xml"?>
-
       <?rfc include="reference.RFC.6991.xml"?>
-
-      <?rfc include="reference.RFC.7950.xml"?>
-
-      <?rfc include="reference.RFC.8174.xml"?>
-
+      <!--<?rfc include="reference.RFC.7950.xml"?> YANG curr -->
+      <?rfc include="reference.RFC.8174.xml"?> <!-- Terms new -->
       <?rfc include="reference.RFC.8341.xml"?>
-
       <?rfc include="reference.RFC.8342.xml"?>
+      <?rfc include="reference.RFC.8526.xml"?> <!-- NMDA NETCONF -->
+
+      <!-- START PLACEHOLDER UNTIL THE LP draft is submitted
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination.xml"/>
+      -->
+      <reference anchor="I-D.wwlh-netconf-list-pagination" target="FIXME">
+        <front>
+          <title>List Pagination...</title>
+          <author/>
+        </front>
+      </reference>
+      <!-- END PLACEHOLDER UNTIL THE LP draft is submitted -->
+
     </references>
 
     <references title="Informative References">
-      <?rfc include="reference.RFC.8040.xml"?>
-
+      <?rfc include="reference.RFC.8040.xml"?> <!-- RESTCONF -->
       <?rfc include="reference.RFC.8446.xml"?>
-
-      <?rfc include="reference.RFC.8526.xml"?>
-
-      <!-- <?rfc include="reference.RFC.8340.xml"?> Tree Diagrams -->
-
+      <?rfc include="reference.RFC.8340.xml"?> <!-- Tree Diagrams -->
       <!--<?rfc include="reference.RFC.6991.xml"?> YANG Types-->
-
       <!--<?rfc include="reference.RFC.8341.xml"?> NACM-->
     </references>
 
@@ -500,154 +297,26 @@ module ietf-netconf-list-pagination {
 
     <section title="Example YANG Module">
       <t>The examples within this document use the "example-social" YANG
-      module defined in Appendix A.1 of
-      [I-D.wwlh-netconf-list-pagination].</t>
+      module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
-
     <section title="Example Data Set">
-      <t>The example Data Set uses one defined in Appendix A.2 of
-      [I-D.wwlh-netconf-list-pagination].</t>
+      <t>The Example Data Set used by the examples is defined in 
+        <relref section="A.2" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
-
-    <section title="NETCONF List Pagination Examples">
-      <t>The examples within this document use the "example-social" YANG
-      module defined in Appendix B.</t>
-
-      <section title="No Filter Parameter">
-        <t>In this example, the client requests all "uint8-numbers" resources
-        for a given member resource:</t>
-
-        <figure>
-          <artwork>REQUEST from NETCONF client:
-&lt;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42"&gt;
-  &lt;get-config&gt;
-    &lt;source&gt;
-      &lt;running/&gt;
-    &lt;/source&gt;
-   &lt;filter type="xpath"
-   select="/es:members/es:member[es:member-id='alice']/es:favorites
-   /es:uint8-numbers"
-   xmlns:es="http://example.com/ns/example-social"/&gt;
-    &lt;list-pagination
-      xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-list-paginat
-      ion"&gt;true&lt;/list-pagination&gt;
-  &lt;/get-config&gt;
-&lt;/rpc&gt;
-
-RESPONSE from NETCONF server:
-&lt;rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42"&gt;
-  &lt;data&gt;
-    &lt;members xmlns="http://example.com/ns/example-social"&gt;
-      &lt;member&gt;
-       &lt;member-id&gt;alice&lt;/member-id&gt;
-       &lt;privacy-settings&gt;
-       &lt;post-visibility&gt;public&lt;/post-visibility&gt;
-       &lt;/privacy-settings&gt;
-       &lt;favorites&gt;
-       &lt;uint8-numbers&gt;17&lt;/uint8-numbers&gt;
-       &lt;uint8-numbers&gt;13&lt;/uint8-numbers&gt;
-       &lt;uint8-numbers&gt;11&lt;/uint8-numbers&gt;
-       &lt;uint8-numbers&gt;7&lt;/uint8-numbers&gt;
-       &lt;uint8-numbers&gt;5&lt;/uint8-numbers&gt;
-       &lt;uint8-numbers&gt;3&lt;/uint8-numbers&gt;
-       &lt;/favorites&gt;
-      &lt;/member&gt;
-    &lt;/members&gt;
-  &lt;/data&gt;
-&lt;/rpc-reply&gt;</artwork>
-        </figure>
+    <section title="Example Queries">
+      <section title='List pagination with all query parameters'>
+        <t>This example mimics that <relref section="A.3.7" target="I-D.wwlh-netconf-list-pagination"                  relative="#FIXME"/>.
+          <figure><artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
+]]></artwork></figure>
+      </t>
+        <t>Response from the NETCONF server:
+          <figure><artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc-reply.xml)
+]]></artwork></figure>
+      </t>
       </section>
-
-      <section title="&quot;remaining&quot; attribute parameter">
-        <t>In this example, the client requests the first one "uint8-numbers"
-        resources for a given member resource:</t>
-
-        <figure>
-          <artwork>REQUEST from NETCONF client:
-&lt;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42"&gt;
-  &lt;get-config&gt;
-    &lt;source&gt;
-      &lt;running/&gt;
-    &lt;/source&gt;
-   &lt;filter type="xpath"
-   select="/es:members/es:member[es:member-id='alice']/es:favorites
-   /es:uint8-numbers"
-   xmlns:es="http://example.com/ns/example-social"/&gt;
-    &lt;list-pagination
-      xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-list-paginat
-      ion"&gt;true&lt;/list-pagination&gt;
-    &lt;limit&gt;1&lt;/limit&gt;
-  &lt;/get-config&gt;
-&lt;/rpc&gt;
-
-RESPONSE from NETCONF server:
-&lt;rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42"&gt;
-  &lt;data&gt;
-    &lt;members xmlns="http://example.com/ns/example-social"&gt;
-      &lt;member&gt;
-       &lt;member-id&gt;alice&lt;/member-id&gt;
-       &lt;privacy-settings&gt;
-       &lt;post-visibility&gt;public&lt;/post-visibility&gt;
-       &lt;/privacy-settings&gt;
-       &lt;favorites&gt;
-       &lt;uint8-numbers cp:remaining="5" xmlns:cp="http://clicon.org/clixon-netconf-list-pagination"&gt;
-        17&lt;/uint8-numbers&gt;
-       &lt;/favorites&gt;
-      &lt;/member&gt;
-    &lt;/members&gt;
-  &lt;/data&gt;
-&lt;/rpc-reply&gt;</artwork>
-        </figure>
-      </section>
-
-      <section title="Combination of &quot;where&quot;, &quot;limit&quot;,&quot;offset&quot; and &quot;sort&quot; Parameters">
-        <t>In this example, the client requests the first 2 "post" resources
-        from the selected skill resources list:</t>
-
-        <figure>
-          <artwork>REQUEST from NETCONF client:
-&lt;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42"&gt;
-  &lt;get-config&gt;
-    &lt;source&gt;
-      &lt;running/&gt;
-    &lt;/source&gt;
-   &lt;filter type="xpath"
-   select="/es:members/es:member/es:posts
-   /es:post"
-   xmlns:es="http://example.com/ns/example-social"/&gt;
-    &lt;list-pagination
-      xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-list-paginat
-      ion"&gt;true&lt;/list-pagination&gt;
-     &lt;where&gt;//stats//joined[starts-with(@timestamp,'2020')]&lt;/where&gt;
-     &lt;offset&gt;1&lt;/offset&gt;
-     &lt;order&gt;timestamp&lt;/order&gt;
-     &lt;limit&gt;2&lt;/limit&gt;
-  &lt;/get-config&gt;
-&lt;/rpc&gt;
-
-RESPONSE from NETCONF server:
-&lt;rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42"&gt;
-  &lt;data&gt;
-    &lt;members xmlns="http://example.com/ns/example-social"&gt;
-      &lt;member&gt;
-       &lt;member-id&gt;bob&lt;/member-id&gt;
-      &lt;posts&gt;
-       &lt;post&gt;
-         &lt;timestamp&gt;2020-08-14T03:33:55Z&lt;/timestamp&gt;
-         &lt;body&gt;What's new?&lt;/body&gt;
-       &lt;/post&gt;
-       &lt;post&gt;
-         &lt;timestamp&gt;2020-08-14T03:34:30Z&lt;/timestamp&gt;
-         &lt;body&gt;I'm bored...&lt;/body&gt;
-       &lt;/post&gt;
-       &lt;/posts&gt;
-      &lt;/member&gt;
-    &lt;/members&gt;
-  &lt;/data&gt;
-&lt;/rpc-reply&gt;</artwork>
-        </figure>
-      </section>
-    </section>
+    </section> <!-- Example Queries -->
 
     <!--
     <section title="Contributors" numbered="no">
