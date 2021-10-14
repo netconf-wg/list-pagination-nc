@@ -60,7 +60,7 @@ module ietf-list-pagination-nc {
   }
 
   grouping pagination-parameters {
-    description "FIXME";
+    description "List Pagination Parameters.";
     container list-pagination {
       description
         "List Pagination Parameters.";
@@ -95,10 +95,14 @@ module ietf-list-pagination-nc {
       leaf direction {
         type enumeration {
           enum forward {
-            description "FIXME";
+            description 
+               "Forward direction or direction from the 
+                first list item to the last list item.";
           }
           enum reverse {
-            description "FIXME";
+            description 
+               "Reverse direction or direction from the 
+                last list item to the first list item.";
           }
         }
         default "forward";
@@ -149,17 +153,23 @@ module ietf-list-pagination-nc {
   }
 
   augment "/nc:get/nc:input" {
-    description "FIXME";
+    description 
+       "Allow the get operation to use content filter parameter for 
+       specifying the YANG list or leaf-list that is to be retrieved";
     uses pagination-parameters;
   }
 
   augment "/nc:get-config/nc:input" {
-    description "FIXME";
+    description 
+       "Allow the get-config operation to use content filter parameter 
+       for specifying the YANG list or leaf-list that is to be retrieved";
     uses pagination-parameters;
   }
 
   augment "/ncds:get-data/ncds:input" {
-    description "FIXME";
+    description 
+       "Allow the get-data operation to use content filter parameter for 
+       specifying the YANG list or leaf-list that is to be retrieved";
     uses pagination-parameters;
   }
 }
