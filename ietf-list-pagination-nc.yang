@@ -87,31 +87,30 @@ module ietf-list-pagination-nc {
         }
         default "none";
         description
-          "The first list item to return.
-           the 'offset' parameter is either an integer greater than
-           or equal to 1, or the string 'unbounded'.  The string
-           'none' is the default value.";
+          "The first list item to return. The 'offset' parameter
+           is either an integer greater than or equal to 1, or the
+           string 'none'.  The string 'none' is the default value.";
       }
       leaf direction {
         type enumeration {
-          enum forward {
-            description 
-               "Forward direction or direction from the 
+          enum forwards {
+            description
+               "Forwards direction or direction from the
                 first list item to the last list item.";
           }
-          enum reverse {
-            description 
-               "Reverse direction or direction from the 
+          enum backwards {
+            description
+               "Backwards direction or direction from the
                 last list item to the first list item.";
           }
         }
-        default "forward";
+        default "forwards";
         description
-          "Direction relative to the 'sort' order through list
-           or leaf-list. It can be forward direction or reverse
+          "Direction relative to the 'sort-by' order through list
+           or leaf-list. It can be forwards direction or backwards
            direction.";
       }
-      leaf sort {
+      leaf sort-by {
         type union {
           type string {
             length "1..max" {
@@ -142,7 +141,7 @@ module ietf-list-pagination-nc {
         type yang:xpath1.0;
         description
           "The boolean filter to select data instances to return from
-           the list or leaf-list target.  The Xpath expression MAY be
+           the list or leaf-list target.  The XPath expression MAY be
            constrained either server-wide, by datastore, by 'config'
            status, or per list or leaf-list.  Details regarding how
            constraints are communicated are TBD.  This parameter
@@ -153,22 +152,22 @@ module ietf-list-pagination-nc {
   }
 
   augment "/nc:get/nc:input" {
-    description 
-       "Allow the get operation to use content filter parameter for 
+    description
+       "Allow the get operation to use content filter parameter for
        specifying the YANG list or leaf-list that is to be retrieved";
     uses pagination-parameters;
   }
 
   augment "/nc:get-config/nc:input" {
-    description 
-       "Allow the get-config operation to use content filter parameter 
+    description
+       "Allow the get-config operation to use content filter parameter
        for specifying the YANG list or leaf-list that is to be retrieved";
     uses pagination-parameters;
   }
 
   augment "/ncds:get-data/ncds:input" {
-    description 
-       "Allow the get-data operation to use content filter parameter for 
+    description
+       "Allow the get-data operation to use content filter parameter for
        specifying the YANG list or leaf-list that is to be retrieved";
     uses pagination-parameters;
   }
