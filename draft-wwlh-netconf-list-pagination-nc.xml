@@ -336,7 +336,7 @@ dcornejo@gmail.com</artwork>
     -->
 
     <section numbered="no" title="Acknowledgements">
-      <t>This work has benefited from the discussions of restconf resource
+      <t>This work has benefited from the discussions of RESTCONF resource
       collection over the years, in particular,
       [I-D.ietf-netconf-restconf-collection] which provides enhanced filtering
       features for the retrieval of data nodes with the GET method and
