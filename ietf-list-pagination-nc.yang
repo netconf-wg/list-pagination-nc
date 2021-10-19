@@ -3,11 +3,6 @@ module ietf-list-pagination-nc {
   namespace "urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc";
   prefix lpgnc;
 
-  import ietf-yang-types {
-    prefix yang;
-   reference
-      "RFC 6991: Common YANG Data Types";
-  }
   import ietf-netconf {
     prefix nc;
     reference
@@ -19,6 +14,12 @@ module ietf-list-pagination-nc {
     reference
       "RFC 8526: NETCONF Extensions to Support the
                  Network Management Datastore Architecture";
+  }
+
+  import ietf-list-pagination {
+    prefix lp;
+    reference
+      "RFC XXXX: List Pagination for YANG-driven Protocols";
   }
 
   organization
@@ -65,110 +66,59 @@ module ietf-list-pagination-nc {
       description
         "List Pagination Parameters.";
       leaf limit {
-        type union {
-          type uint32;
-          type string {
-            pattern 'unbounded';
-          }
-        }
-        default "unbounded";
+        type lp:limit;
         description
-          "The maximum number of list entries to return. The
-           value of the 'limit' parameter is either an integer
-           greater than or equal to 1, or the string 'unbounded'.
-           The string 'unbounded' is the default value.";
+          "A maximum number of entries to return. When unspecified,
+           the maximum number of entries to return is unbounded.";
       }
       leaf offset {
-        type union {
-          type uint32;
-          type string {
-            pattern 'none';
-          }
-        }
-        default "none";
+        type lp:offset;
         description
-          "The first list item to return. The 'offset' parameter
-           is either an integer greater than or equal to 1, or the
-           string 'none'.  The string 'none' is the default value.";
+          "The number of entries in the working result set that should
+           be skipped over.  When unspecified, no entries are skipped.";
       }
       leaf direction {
-        type enumeration {
-          enum forwards {
-            description
-               "Forwards direction or direction from the
-                first list item to the last list item.";
-          }
-          enum backwards {
-            description
-               "Backwards direction or direction from the
-                last list item to the first list item.";
-          }
-        }
-        default "forwards";
+        type lp:direction;
         description
-          "Direction relative to the 'sort-by' order through list
-           or leaf-list. It can be forwards direction or backwards
-           direction.";
+          "Indicates how the entries in the working result set
+           should be traversed.  When unspecified, entries are
+           traversed in the 'forwards' direction.";
       }
       leaf sort-by {
-        type union {
-          type string {
-            length "1..max" {
-              description
-                "The name of a descendent node to sort on.  For
-                 'config false' lists and leaf-lists, the node
-                 SHOULD have the 'indexed' extension indicating
-                 that it has been indexed, enabling efficient
-                 sorts.";
-            }
-          }
-          type enumeration {
-           enum default {
-              description
-                "Indicates that the 'default' order is assumed.  For
-                 'ordered-by user' lists and leaf-lists, the default
-                 order is the user-configured order.  For 'ordered-by
-                 system' lists and leaf-lists, the default order is
-                 specified by the system.";
-            }
-          }
-        }
-        default "default";
+        type lp:sort-by;
         description
-          "Indicates how the entries in a list are to be sorted.";
+          "Indictes the name of a descendent node to sort on.";
       }
       leaf where {
-        type yang:xpath1.0;
+        type lp:where;
         description
-          "The boolean filter to select data instances to return from
-           the list or leaf-list target.  The XPath expression MAY be
-           constrained either server-wide, by datastore, by 'config'
-           status, or per list or leaf-list.  Details regarding how
-           constraints are communicated are TBD.  This parameter
-           is optional; no filtering is applied when it is not
-           specified.";
+          "The boolean filter to select data instances to return
+           from the list or leaf-list target.";
       }
     }
   }
 
   augment "/nc:get/nc:input" {
     description
-       "Allow the get operation to use content filter parameter for
-       specifying the YANG list or leaf-list that is to be retrieved";
+     "Allow the 'get' operation to use content filter
+      parameter for specifying the YANG list or leaf-list
+      that is to be retrieved";
     uses pagination-parameters;
   }
 
   augment "/nc:get-config/nc:input" {
     description
-       "Allow the get-config operation to use content filter parameter
-       for specifying the YANG list or leaf-list that is to be retrieved";
+     "Allow the 'get-config' operation to use content filter
+      parameter for specifying the YANG list or leaf-list
+      that is to be retrieved";
     uses pagination-parameters;
   }
 
   augment "/ncds:get-data/ncds:input" {
     description
-       "Allow the get-data operation to use content filter parameter for
-       specifying the YANG list or leaf-list that is to be retrieved";
+     "Allow the 'get-data' operation to use content filter
+      parameter for specifying the YANG list or leaf-list
+      that is to be retrieved";
     uses pagination-parameters;
   }
 }
