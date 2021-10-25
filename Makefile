@@ -36,9 +36,10 @@ idnits: $(next).txt
 	$(idnits) $<
 
 clean:
-	-rm -f $(draft).txt $(draft).html index.html
-	-rm -f $(next).txt $(next).html
 	-rm -f $(draft)-[0-9][0-9].xml
+	-rm -f $(draft)-[0-9][0-9].v2v3.xml
+	-rm -f $(draft)-[0-9][0-9].txt
+	-rm -f $(draft)-[0-9][0-9].html
 	-rm -f ietf-*\@202*.yang
 	-rm -f includes/ietf-list-pagination@202*.yang
 	-rm -f metadata.min.js
@@ -57,6 +58,7 @@ $(next).xml: $(draft).xml
 	cd includes && ./validate-all.sh && ./gen-trees.sh && cd ..
 	./.insert-figures.sh $@ > tmp && mv tmp $@
 	@rm -f includes/tree-*.txt
+	xml2rfc --v2v3 $@
 
 .INTERMEDIATE: $(draft).xml
 %.xml: %.md
