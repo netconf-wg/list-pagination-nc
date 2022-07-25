@@ -13,7 +13,7 @@
 <?rfc-ext allow-markup-in-artwork="yes" ?>
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
-<rfc category="std" docName="draft-wwlh-netconf-list-pagination-nc-latest"
+<rfc category="std" docName="draft-ietf-netconf-list-pagination-nc-latest"
      ipr="trust200902" consensus="true">
   <front>
     <title abbrev="NETCONF Pagination Support">NETCONF Extensions to Support
@@ -76,7 +76,7 @@
 
     <abstract>
       <t>This document defines a mapping of the list pagination mechanism
-        defined in <xref target="I-D.wwlh-netconf-list-pagination"/>
+        defined in <xref target="I-D.ietf-netconf-list-pagination"/>
         to NETCONF <xref target="RFC6241"/>.</t>
       <t>This document updates <xref target="RFC6241"/>, to augment the &lt;get&gt; and
         &lt;get-config&gt; "rpc" statements, and <xref target="RFC8526"/>, to augment the
@@ -88,7 +88,7 @@
   <middle>
     <section anchor="intro" title="Introduction">
       <t>This document defines a mapping of the list pagination mechanism
-        defined in <xref target="I-D.wwlh-netconf-list-pagination"/>
+        defined in <xref target="I-D.ietf-netconf-list-pagination"/>
         to NETCONF <xref target="RFC6241"/>.</t>
 
       <t>This document updates <xref target="RFC6241"/> and <xref target="RFC8526"/>,
@@ -152,7 +152,7 @@
     </section> <!-- updates -->
 
     <section title="List Pagination for NETCONF" anchor="solution">
-      <t>In order for NETCONF to support <xref target="I-D.wwlh-netconf-list-pagination"/>,
+      <t>In order for NETCONF to support <xref target="I-D.ietf-netconf-list-pagination"/>,
       this document extends the operations &lt;get&gt;, &lt;get-config&gt; and &lt;get-data&gt;
       to include additional input parameters and output annotations.</t>
 
@@ -293,9 +293,9 @@ RFC: XXXX</artwork>
       <?rfc include="reference.RFC.8526.xml"?> <!-- NMDA NETCONF -->
 
       <!-- START PLACEHOLDER UNTIL THE LP draft is submitted
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination.xml"/>
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-list-pagination.xml"/>
       -->
-      <reference anchor="I-D.wwlh-netconf-list-pagination" target="FIXME">
+      <reference anchor="I-D.ietf-netconf-list-pagination" target="FIXME">
         <front>
           <title>List Pagination...</title>
           <author/>
@@ -321,15 +321,15 @@ RFC: XXXX</artwork>
 
     <section title="Example YANG Module">
       <t>The examples within this document use the "example-social" YANG
-      module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
+      module defined in <relref section="A.1" target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Data Set">
       <t>The Example Data Set used by the examples is defined in 
-        <relref section="A.2" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
+        <relref section="A.2" target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Queries">
       <section title='List pagination with all query parameters'>
-        <t>This example mimics that <relref section="A.3.7" target="I-D.wwlh-netconf-list-pagination"                  relative="#FIXME"/>.
+        <t>This example mimics that <relref section="A.3.7" target="I-D.ietf-netconf-list-pagination"                  relative="#FIXME"/>.
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
 ]]></artwork></figure>
