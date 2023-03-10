@@ -68,6 +68,7 @@ module ietf-list-pagination-nc {
       uses lp:where-param-grouping;
       uses lp:sort-by-param-grouping;
       uses lp:direction-param-grouping;
+      uses lp:cursor-param-grouping;
       uses lp:offset-param-grouping;
       uses lp:limit-param-grouping;
       uses lp:sublist-limit-param-grouping;
