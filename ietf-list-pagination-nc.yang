@@ -67,10 +67,12 @@ module ietf-list-pagination-nc {
       description "List pagination parameters.";
       uses lp:where-param-grouping;
       uses lp:sort-by-param-grouping;
+      uses lp:sort-locale-collate-param-grouping;
       uses lp:direction-param-grouping;
       uses lp:cursor-param-grouping;
       uses lp:offset-param-grouping;
       uses lp:limit-param-grouping;
+      uses lp:snapshot-param-grouping;
       uses lp:sublist-limit-param-grouping;
     }
   }

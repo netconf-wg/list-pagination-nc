@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FOLD=rfcfold
+FOLD=~/src/github/ietf-tools/rfcfold/rfcfold
 
 # make sure input params are good
 if [ "$#" == "0" ]; then
