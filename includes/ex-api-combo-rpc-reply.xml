@@ -1,5 +1,5 @@
 <lp:xml-list xmlns:lp="urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination"
-  xmlns="http://example.com/ns/example-social">
+  xmlns="https://example.com/ns/example-social">
   <member lp:remaining="1">
     <member-id>eric</member-id>
     <email-address>eric@example.com</email-address>

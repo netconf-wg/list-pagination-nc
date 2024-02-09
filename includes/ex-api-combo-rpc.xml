@@ -4,7 +4,7 @@
       <running/>
     </source>
     <filter type="xpath" select="/es:members/es:member"
-      xmlns:es="http://example.com/ns/example-social"/>
+      xmlns:es="https://example.com/ns/example-social"/>
       <list-pagination
         xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-list-pagination">true</list-pagination>
       <where>//stats//joined[starts-with(@timestamp,'2020')]</where>
