@@ -28,27 +28,20 @@
 
     <author fullname="Qin Wu" initials="Q." surname="Wu">
       <organization>Huawei</organization>
-
       <address>
-        <postal>
-          <street>101 Software Avenue, Yuhua District</street>
-
-          <city>Nanjing</city>
-
-          <region>Jiangsu</region>
-
-          <code>210012</code>
-
-          <country>China</country>
-        </postal>
-
         <email>bill.wu@huawei.com</email>
       </address>
     </author>
 
-    <author fullname="Olof Hagsand" initials="O." surname="Hagsand">
-      <organization>Netgate</organization>
+    <author fullname="Per Andersson" initials="P." surname="Andersson">
+      <organization>Cisco Systems</organization>
+      <address>
+        <email>perander@cisco.com</email>
+      </address>
+    </author>
 
+    <author fullname="Olof Hagsand" initials="O." surname="Hagsand">
+      <organization>SUNET</organization>
       <address>
         <email>olof@hagsand.se</email>
       </address>
@@ -56,19 +49,11 @@
 
     <author fullname="Hongwei Li" initials="H." surname="Li">
       <organization>HPE</organization>
-
       <address>
         <email>flycoolman@gmail.com</email>
       </address>
     </author>
 
-    <author fullname="Per Andersson" initials="P." surname="Andersson">
-      <organization>Cisco Systems</organization>
-
-      <address>
-        <email>perander@cisco.com</email>
-      </address>
-    </author>
 
     <date/>
     <area>OPS Area</area>
@@ -307,10 +292,11 @@ RFC: XXXX</artwork>
     </references>
 
     <references title="Informative References">
+      <!--<?rfc include="reference.RFC.6991.xml"?> YANG Types-->
+      <?rfc include="reference.RFC.7950.xml"?> <!-- YANG -->
       <?rfc include="reference.RFC.8040.xml"?> <!-- RESTCONF -->
       <?rfc include="reference.RFC.8446.xml"?>
       <?rfc include="reference.RFC.8340.xml"?> <!-- Tree Diagrams -->
-      <!--<?rfc include="reference.RFC.6991.xml"?> YANG Types-->
       <!--<?rfc include="reference.RFC.8341.xml"?> NACM-->
     </references>
 
