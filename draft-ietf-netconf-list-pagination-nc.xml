@@ -255,9 +255,10 @@ RFC: XXXX</artwork>
         particular NETCONF users to a preconfigured subset of all available
         NETCONF protocol operations and content.</t>
 
-        <t>The security considerations for the base NETCONF protocol
-        operations (see Section 9 of <xref target="RFC6241"/> apply to the new
-        &lt;get-list-pagination&gt; RPC operations defined in this
+        <t>The security considerations for the base NETCONF protocol operations
+        (see Section 9 of <xref target="RFC6241"/> and Section 6 of
+        <xref target="RFC8526"/>) apply to the extension of operations
+        &lt;get&gt;, &lt;get-config&gt;, and &lt;get-data&gt; defined in this
         document.</t>
       </section>
     </section>
