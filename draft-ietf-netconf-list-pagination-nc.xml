@@ -13,7 +13,8 @@
 <?rfc-ext allow-markup-in-artwork="yes" ?>
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
-<rfc category="std" docName="draft-ietf-netconf-list-pagination-nc-latest"
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"
+     category="std" docName="draft-ietf-netconf-list-pagination-nc-latest"
      ipr="trust200902" consensus="true">
   <front>
     <title abbrev="NETCONF Pagination Support">NETCONF Extensions to Support
@@ -278,18 +279,7 @@ RFC: XXXX</artwork>
       <?rfc include="reference.RFC.8341.xml"?>
       <?rfc include="reference.RFC.8342.xml"?>
       <?rfc include="reference.RFC.8526.xml"?> <!-- NMDA NETCONF -->
-
-      <!-- START PLACEHOLDER UNTIL THE LP draft is submitted
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-list-pagination.xml"/>
-      -->
-      <reference anchor="I-D.ietf-netconf-list-pagination" target="FIXME">
-        <front>
-          <title>List Pagination...</title>
-          <author/>
-        </front>
-      </reference>
-      <!-- END PLACEHOLDER UNTIL THE LP draft is submitted -->
-
+      <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-list-pagination.xml"/>
     </references>
 
     <references title="Informative References">
