@@ -244,12 +244,9 @@ RFC: XXXX</artwork>
     <section anchor="security" title="Security Considerations">
       <section title="The &quot;ietf-netconf-list-pagination&quot; YANG Module">
         <t>The YANG module defined in this document extends the base
-        operations for NETCONF <xref target="RFC6241"/> and RESTCONF <xref
-        target="RFC8040"/>. The lowest NETCONF layer is the secure transport
-        layer, and the mandatory-to-implement secure transport is Secure Shell
-        (SSH) <xref target="RFC6242"/>. The lowest RESTCONF layer is HTTPS,
-        and the mandatory-to-implement secure transport is TLS <xref
-        target="RFC8446"/>.</t>
+        operations for NETCONF <xref target="RFC6241"/>. The lowest NETCONF
+        layer is the secure transport layer, and the mandatory-to-implement
+        secure transport is Secure Shell (SSH) <xref target="RFC6242"/>.</t>
 
         <t>The Network Configuration Access Control Model (NACM) <xref
         target="RFC8341"/> provides the means to restrict access for
