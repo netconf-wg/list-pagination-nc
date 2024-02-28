@@ -295,15 +295,16 @@ RFC: XXXX</artwork>
 
     <section title="Example YANG Module">
       <t>The examples within this document use the "example-social" YANG
-      module defined in <relref section="A.1" target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
+      module defined in <relref section="A.1" target="I-D.ietf-netconf-list-pagination"/>.</t>
     </section>
     <section title="Example Data Set">
-      <t>The Example Data Set used by the examples is defined in 
-        <relref section="A.2" target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
+      <t>The Example Data Set used by the examples is defined in
+        <relref section="A.2" target="I-D.ietf-netconf-list-pagination"/>.</t>
     </section>
     <section title="Example Queries">
       <section title='List pagination with all query parameters'>
-        <t>This example mimics that <relref section="A.3.7" target="I-D.ietf-netconf-list-pagination"                  relative="#FIXME"/>.
+        <t>This example mimics that <relref section="A.3.9"
+          target="I-D.ietf-netconf-list-pagination"/>.
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
 ]]></artwork></figure>
