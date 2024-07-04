@@ -264,27 +264,26 @@ RFC: XXXX</artwork>
 
   <back>
     <references title="Normative References">
-      <?rfc include="reference.RFC.2119.xml"?> <!-- Terms -->
-      <?rfc include="reference.RFC.3688.xml"?>
-      <?rfc include="reference.RFC.6241.xml"?>
-      <?rfc include="reference.RFC.6242.xml"?>
-      <?rfc include="reference.RFC.6243.xml"?>
-      <?rfc include="reference.RFC.6991.xml"?>
-      <?rfc include="reference.RFC.7950.xml"?> <!-- YANG curr -->
-      <?rfc include="reference.RFC.8040.xml"?> <!-- RESTCONF -->
-      <?rfc include="reference.RFC.8174.xml"?> <!-- Terms new -->
-      <?rfc include="reference.RFC.8341.xml"?> <!-- NACM -->
-      <?rfc include="reference.RFC.8342.xml"?>
-      <?rfc include="reference.RFC.8407.xml"?> <!-- YANG review guidelines -->
-      <?rfc include="reference.RFC.8446.xml"?> <!-- TLS 1.3 -->
-      <?rfc include="reference.RFC.8526.xml"?> <!-- NMDA NETCONF -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/> <!-- Terms -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6241.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6242.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6243.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6991.xml"/> <!-- YANG Types-->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml"/> <!-- YANG -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8040.xml"/> <!-- RESTCONF -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/> <!-- Terms new -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8341.xml"/> <!-- NACM -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8342.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8407.xml"/> <!-- YANG review guidelines -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8446.xml"/> <!-- TLS 1.3 -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8526.xml"/> <!-- NMDA NETCONF -->
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-list-pagination.xml"/>
     </references>
 
     <references title="Informative References">
-      <?rfc include="reference.RFC.6020.xml"?> <!-- YANG orig -->
-      <!--<?rfc include="reference.RFC.6991.xml"?> YANG Types-->
-      <?rfc include="reference.RFC.8340.xml"?> <!-- Tree Diagrams -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml"/> <!-- YANG orig -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8340.xml"/> <!-- Tree Diagrams -->
     </references>
 
     <section title="Open Issues">
