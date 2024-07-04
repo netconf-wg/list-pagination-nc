@@ -15,9 +15,13 @@
 <?rfc iprnotified="no"?>
 <?rfc strict="yes"?>
 
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" submissionType="IETF" 
-     category="std" docName="draft-ietf-netconf-list-pagination-nc-latest"
-  ipr="trust200902" consensus="true">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"
+     submissionType="IETF" 
+     category="std"
+     docName="draft-ietf-netconf-list-pagination-nc-latest"
+     ipr="trust200902"
+     consensus="true"
+     updates"6241">
   <front>
     <title abbrev="NETCONF Pagination Support">NETCONF Extensions to Support
     List Pagination</title>
