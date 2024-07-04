@@ -5,14 +5,15 @@
     </source>
     <filter type="xpath" select="/es:members/es:member"
       xmlns:es="https://example.com/ns/example-social"/>
-      <list-pagination
-        xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-list-pagination">true</list-pagination>
+    <list-pagination
+      xmlns="urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc">
       <where>//stats//joined[starts-with(timestamp,'2020')]</where>
       <sort-by>timestamp</sort-by>
       <direction>backwards</direction>
       <offset>2</offset>
       <limit>2</limit>
       <sublist-limit>1</sublist-limit>
-    </filter>
+      <locale>sv_US</locale>
+    </list-pagination>
   </get-config>
 </rpc>

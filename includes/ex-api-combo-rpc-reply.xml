@@ -1,4 +1,4 @@
-<lp:xml-list xmlns:lp="urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination"
+<lp:xml-list xmlns:lp="urn:ietf:params:xml:ns:yang:ietf-list-pagination"
   xmlns="https://example.com/ns/example-social">
   <member lp:remaining="1" lp:locale="en_US">
     <member-id>eric</member-id>
