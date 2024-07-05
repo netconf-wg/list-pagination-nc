@@ -7,8 +7,8 @@
       xmlns:es="https://example.com/ns/example-social"/>
     <list-pagination
       xmlns="urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc">
-      <where>//stats//joined[starts-with(timestamp,'2020')]</where>
-      <sort-by>timestamp</sort-by>
+      <where>//stats[starts-with(joined,'2020')]</where>
+      <sort-by>joined</sort-by>
       <direction>backwards</direction>
       <offset>2</offset>
       <limit>2</limit>
