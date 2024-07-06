@@ -21,7 +21,7 @@
      docName="draft-ietf-netconf-list-pagination-nc-latest"
      ipr="trust200902"
      consensus="true"
-     updates"6241">
+     updates="6241">
   <front>
     <title abbrev="NETCONF Pagination Support">NETCONF Extensions to Support
     List Pagination</title>

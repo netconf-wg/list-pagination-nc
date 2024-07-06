@@ -1,5 +1,5 @@
 <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42">
-  <get-config>
+  <get>
     <source>
       <running/>
     </source>
@@ -15,5 +15,5 @@
       <sublist-limit>1</sublist-limit>
       <locale>sv_US</locale>
     </list-pagination>
-  </get-config>
+  </get>
 </rpc>
