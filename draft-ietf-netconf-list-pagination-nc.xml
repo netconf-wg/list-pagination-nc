@@ -298,12 +298,6 @@ RFC: XXXX</artwork>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8407.xml"/> <!-- Guidelines -->
     </references>
 
-    <section title="Open Issues">
-      <t>Cursors (i.e.,stable result sets) are related to the topic of dynamic
-      changing lists between two queries. How cursors can be supported using
-      "feature"?</t>
-    </section>
-
     <section title="Example YANG Module">
       <t>The examples within this document use the "example-social" YANG
       module defined in <relref section="A.1" target="I-D.ietf-netconf-list-pagination"/>.</t>
