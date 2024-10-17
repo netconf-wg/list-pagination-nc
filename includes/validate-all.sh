@@ -38,14 +38,24 @@ printf "okay.\n"
 
 # Validate examples
 
-printf "Testing ex-api-combo-rpc.xml...DISABLED!\n" # FIXME: how to validate?
+printf "Testing ex-api-combo-rpc.xml...DISABLED!\n" # FIXME: yanglint can't validate <get> *requests*?!
 #command="yanglint -t get ietf-datastores@2018-02-14.yang ../../list-pagination/includes/example-social@$DATE.yang ../../list-pagination/ietf-list-pagination@$DATE.yang ../ietf-list-pagination-nc@$DATE.yang ex-api-combo-rpc.xml"
 #run_unix_cmd $LINENO "$command" 0
 #printf "okay.\n"
 
+printf "Testing ex-api-combo-rpc-inner-payload.xml..." 
+sed -e 's/^}/uses pagination-parameters;}/' ../ietf-list-pagination-nc@$DATE.yang > ietf-list-pagination-nc@$DATE.yang
+command="yanglint -t config ../../list-pagination/ietf-list-pagination@$DATE.yang ietf-list-pagination-nc@$DATE.yang ex-api-combo-rpc-inner-payload.xml"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 
-printf "Testing ex-api-combo-rpc-reply.xml...DISABLED!\n" # FIXME: how to validate?
+printf "Testing ex-api-combo-rpc-reply.xml...DISABLED!\n" # FIXME: yanglint can't validate whole <get> response
 #command="yanglint -t get ietf-datastores@2018-02-14.yang ../../list-pagination/includes/example-social@$DATE.yang ../../list-pagination/ietf-list-pagination@$DATE.yang ../ietf-list-pagination-nc@$DATE.yang ex-api-combo-rpc-reply.xml"
 #run_unix_cmd $LINENO "$command" 0
 #printf "okay.\n"
+
+printf "Testing ex-api-combo-rpc-reply-inner-payload.xml..." 
+command="yanglint -t get ../../list-pagination/includes/example-social@$DATE.yang ../../list-pagination/ietf-list-pagination@$DATE.yang  ex-api-combo-rpc-reply-inner-payload.xml"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 
