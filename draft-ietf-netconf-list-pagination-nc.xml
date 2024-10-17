@@ -186,7 +186,7 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
 
       <section title='The "offset" Query Parameter' anchor="offset-out-of-range" toc="exclude">
         <t>If the "offset" query parameter value supplied is larger
-          then the number of instances in the list or leaf-list target
+          than the number of instances in the list or leaf-list target
           resource, the &lt;rpc-error&gt; MUST contain error-app-tag
           with value "offset-out-of-range".</t>
       </section>
