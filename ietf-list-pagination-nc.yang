@@ -61,27 +61,12 @@ module ietf-list-pagination-nc {
       "RFC XXXX: NETCONF Extensions to Support List Pagination";
   }
 
-  grouping pagination-parameters {
-    description "A grouping for list pagination parameters.";
-    container list-pagination {
-      description "List pagination parameters.";
-      uses lpg:where-param-grouping;
-      uses lpg:sort-by-param-grouping;
-      uses lpg:locale-param-grouping;
-      uses lpg:direction-param-grouping;
-      uses lpg:cursor-param-grouping;
-      uses lpg:offset-param-grouping;
-      uses lpg:limit-param-grouping;
-      uses lpg:sublist-limit-param-grouping;
-    }
-  }
-
   augment "/nc:get/nc:input" {
     description
       "Allow the 'get' operation to use content filter
        parameter for specifying the YANG list or leaf-list
        that is to be retrieved";
-    uses pagination-parameters;
+    uses lpg:pagination-parameters;
   }
 
   augment "/nc:get-config/nc:input" {
@@ -89,7 +74,7 @@ module ietf-list-pagination-nc {
       "Allow the 'get-config' operation to use content filter
        parameter for specifying the YANG list or leaf-list
        that is to be retrieved";
-    uses pagination-parameters;
+    uses lpg:pagination-parameters;
   }
 
   augment "/ncds:get-data/ncds:input" {
@@ -97,6 +82,6 @@ module ietf-list-pagination-nc {
       "Allow the 'get-data' operation to use content filter
        parameter for specifying the YANG list or leaf-list
        that is to be retrieved";
-    uses pagination-parameters;
+    uses lpg:pagination-parameters;
   }
 }

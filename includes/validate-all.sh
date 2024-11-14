@@ -44,7 +44,7 @@ printf "Testing ex-api-combo-rpc.xml...DISABLED!\n" # FIXME: yanglint can't vali
 #printf "okay.\n"
 
 printf "Testing ex-api-combo-rpc-inner-payload.xml..." 
-sed -e 's/^}/uses pagination-parameters;}/' ../ietf-list-pagination-nc@$DATE.yang > ietf-list-pagination-nc@$DATE.yang
+sed -e 's/^}/uses lpg:pagination-parameters;}/' ../ietf-list-pagination-nc@$DATE.yang > ietf-list-pagination-nc@$DATE.yang
 command="yanglint -t config ../../list-pagination/ietf-list-pagination@$DATE.yang ietf-list-pagination-nc@$DATE.yang ex-api-combo-rpc-inner-payload.xml"
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
