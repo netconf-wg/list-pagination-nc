@@ -296,6 +296,8 @@ RFC: XXXX</artwork>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml"/> <!-- YANG orig -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8340.xml"/> <!-- Tree Diagrams -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8407.xml"/> <!-- Guidelines -->
+      <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-collection.xml"/>
+      <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.zheng-netconf-fragmentation.xml"/>
     </references>
 
     <section title="Example YANG Module">
@@ -334,13 +336,13 @@ dcornejo@gmail.com</artwork>
     <section numbered="no" title="Acknowledgements">
       <t>This work has benefited from the discussions of RESTCONF resource
       collection over the years, in particular,
-      [I-D.ietf-netconf-restconf-collection] which provides enhanced filtering
-      features for the retrieval of data nodes with the GET method and
-      [I-D.zheng-netconf-fragmentation] which document large size data
-      handling challenge. The authors would like to thank the following for
-      lively discussions on list:<figure>
-          <artwork>Andy Bierman Martin Björklund Robert Varga</artwork>
-        </figure></t>
+      <xref target="I-D.ietf-netconf-restconf-collection"/> which provides
+      enhanced filtering features for the retrieval of data nodes with the GET
+      method and <xref target="I-D.zheng-netconf-fragmentation"/> which document
+      large size data handling challenge. The authors would like to thank the
+      following for lively discussions on list (ordered by first name):
+      Andy Bierman, Martin Björklund, Robert Varga, and Robert Wilton.
+      </t>
     </section>
   </back>
 </rfc>
