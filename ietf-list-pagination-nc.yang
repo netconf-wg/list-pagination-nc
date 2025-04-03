@@ -26,8 +26,23 @@ module ietf-list-pagination-nc {
     "IETF NETCONF (Network Configuration) Working Group";
 
   contact
-      "WG Web:   https://datatracker.ietf.org/wg/netconf
-       WG List:  NETCONF WG list <mailto:netconf@ietf.org>";
+      "WG Web:   <https://datatracker.ietf.org/wg/netconf/>
+       WG List:  <mailto:netconf@ietf.org>
+
+       Author:   Kent Watsen
+                 <kent+ietf@watsen.net>
+
+       Author:   Qin Wu
+                 <bill.wu@huawei.com>
+
+       Author:   Per Andersson
+                 <per.ietf@ionio.se>
+
+       Author:   Olof Hagsand
+                 <olof@hagsand.se>
+
+       Author:   Hongwei Li
+                 <flycoolman@gmail.com>";
 
   description
     "This module augments the <get>, <get-config>, and <get-data>
