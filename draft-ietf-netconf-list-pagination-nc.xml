@@ -311,7 +311,10 @@ RFC: XXXX</artwork>
     <section title="Example Queries">
       <section title='List pagination with all query parameters'>
         <t>This example mimics that <relref section="A.3.9"
-          target="I-D.ietf-netconf-list-pagination"/>.
+          target="I-D.ietf-netconf-list-pagination"/>. In this XML example, The
+          xmlns:es attribute binds the "es" prefix to the example-social module
+          name. The urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
+          namespace is used for the list-pagination query parameters.
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
 ]]></artwork></figure>
