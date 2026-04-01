@@ -149,13 +149,18 @@
       this document extends the operations &lt;get&gt;, &lt;get-config&gt; and &lt;get-data&gt;
       to include additional input parameters and output annotations.</t>
 
-      <t>The updated operations accept a content filter parameter, similar to the
+      <t>The updated operations accept a content filter parameter "where", similar to the
       "filter" parameter of &lt;get-config&gt;, but includes nodes for "list" and
       "leaf-list" filtering.</t>
 
-      <t>The content filter parameter is used to specify the YANG list or leaf-list
+      <t>The "where" query parameter is used to specify the YANG list or leaf-list
       that is to be retrieved. This must be a path expression used to represent a
       list or leaf-list data node.</t>
+
+      <t>Prefixes in the "where" query parameter XPath expression MUST be the
+      YANG module prefix. If the specified XPath expression is invalid, then
+      an &lt;rpc-error&gt; is returned with error type value "application" and
+      "error-tag" value "invalid-value".</t>
 
       <t>The following tree diagram <xref target="RFC8340"/> illustrates the
         "ietf-netconf-list-pagination" module:</t>
