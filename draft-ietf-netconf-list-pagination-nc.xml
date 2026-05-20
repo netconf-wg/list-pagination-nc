@@ -158,7 +158,7 @@
       list or leaf-list data node.</t>
 
       <t>Prefixes in the "where" query parameter XPath expression MUST be the
-      YANG module prefixes defined in respective YANG modules. If the specified XPath
+      YANG module prefixe associated with the YANG module. If the specified XPath
       expression is invalid, then an &lt;rpc-error&gt; is returned with error type value
       "application" and "error-tag" value "invalid-value".</t>
 
