@@ -159,7 +159,7 @@
 
       <t>Prefixes in the "where" query parameter XPath expression MUST be the
       YANG module prefixes associated with the YANG modules.
-      "application" and "error-tag" value "invalid-value".</t>
+</t>
 
       <t>The following tree diagram <xref target="RFC8340"/> illustrates the
         "ietf-netconf-list-pagination" module:</t>
