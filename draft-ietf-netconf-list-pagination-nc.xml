@@ -159,7 +159,6 @@
 
       <t>Prefixes in the "where" query parameter XPath expression MUST be the
       YANG module prefixes associated with the YANG modules.
-      expression is invalid, then an &lt;rpc-error&gt; is returned with error type value
       "application" and "error-tag" value "invalid-value".</t>
 
       <t>The following tree diagram <xref target="RFC8340"/> illustrates the
