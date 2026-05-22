@@ -21,7 +21,7 @@
      docName="draft-ietf-netconf-list-pagination-nc-latest"
      ipr="trust200902"
      consensus="true"
-     updates="6241">
+     updates="6241, 8526">
   <front>
     <title abbrev="NETCONF Pagination Support">NETCONF Extensions to Support
     List Pagination</title>
@@ -131,39 +131,34 @@
       </section>
     </section> <!-- intro -->
 
-    <section title="List-Pagination Capability">
+    <section title="List Pagination Capability">
       <section title="Description">
         <t>The :list-pagination capability indicates that the client supports
         paging over optionally filtered and/or sorted entries of YANG modeled
         "list" and "leaf-list" nodes.</t>
       </section>
 
-      <section title="Dependencies">
-        <t>None.</t>
-      </section>
-
       <section title="Capability Identifier">
-        <t>The :list-pagination capability is identified by the following
-        capability string:<figure>
-            <artwork align="center">urn:ietf:params:netconf:capability:list-pagination:1.0</artwork>
-          </figure></t>
+        <t>The :list-pagination capability is identified by the following URN:
+        <figure>
+          <artwork align="center"><![CDATA[
+urn:ietf:params:netconf:capability:list-pagination:1.0
+]]></artwork>
+        </figure></t>
+      </section>
+    </section>
+
+    <section title="Updates to NETCONF Operations" anchor="updates">
+      <section title="Updates to RFC 6241">
+        <t>The &lt;get&gt; and &lt;get-config&gt; rpc statements are
+          augmented to accept additional input parameters, as described
+          in <xref target="solution"/>.</t>
       </section>
 
-      <section title="New Operations">
-        <t>None.</t>
-      </section>
-
-      <section title="Modifications to Existing Operations">
-        <section title="Updates to RFC 6241">
-          <t>The &lt;get&gt; and &lt;get-config&gt; rpc statements are
-          augmented to accept additional input parameters, as described in
-          Section 3.</t>
-        </section>
-
-        <section title="Updates to RFC 8526">
-          <t>The &lt;get-data&gt; rpc statement is augmented to accept
-          additional input parameters, as described in in Section 3.</t>
-        </section>
+      <section title="Updates to RFC 8526">
+        <t>The &lt;get-data&gt; rpc statement is augmented to
+          accept additional input parameters, as described in
+          <xref target="solution"/>.</t>
       </section>
     </section> <!-- updates -->
 
@@ -246,16 +241,16 @@ INSERT_TEXT_FROM_FILE(ietf-list-pagination-nc@YYYY-MM-DD.yang)
         "Network Configuration Protocol (NETCONF) Capability URNs" registry:</t>
         <t>
           <figure align="center">
-            <artwork>
-     Index
-     Capability Identifier
-     ---------------------
-     :list-pagination
-     urn:ietf:params:netconf:capability:list-pagination:1.0</artwork>
+              <artwork><![CDATA[
+      Index
+         Capability Identifier
+      ------------------------
+      :list-pagination
+         urn:ietf:params:netconf:capability:list-pagination:1.0]]></artwork>
           </figure>
         </t>
       </section>
-      
+
       <section title='The "IETF XML" Registry'>
         <t>This document registers one URI in the "ns" subregistry of the IETF
         XML Registry <xref target="RFC3688"/> maintained at <eref
