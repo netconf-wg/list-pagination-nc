@@ -158,7 +158,8 @@
       list or leaf-list data node.</t>
 
       <t>Prefixes in the "where" query parameter XPath expression MUST be the
-      YANG module prefixes associated with the YANG modules.
+      YANG module prefixes associated with the YANG modules. The set of namespace declarations
+      are those in scope on the &lt;where&gt; element.
 </t>
 
       <t>The following tree diagram <xref target="RFC8340"/> illustrates the
