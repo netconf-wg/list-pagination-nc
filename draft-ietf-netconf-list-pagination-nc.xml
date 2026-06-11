@@ -153,13 +153,15 @@
       "filter" parameter of &lt;get-config&gt;, but includes nodes for "list" and
       "leaf-list" filtering.</t>
 
-      <t>The "where" query parameter is used to specify the YANG list or leaf-list
+      <t>The "where" RPC input parameter is used to specify the YANG list or leaf-list
       that is to be retrieved. This must be a path expression used to represent a
       list or leaf-list data node.</t>
 
-      <t>Prefixes in the "where" query parameter XPath expression MUST be the
-      YANG module prefixes associated with the YANG modules. The set of namespace declarations
-      are those in scope on the &lt;where&gt; element.
+      <t> XPath expression in the "where" RPC input parameter is evaluated according to
+      the validation rules defined in section 8.9.1 of RFC6241. Note that Prefixes in the
+      "where" RPC input parameter XPath expression should but needn't be the same YANG module
+      prefixes associated with the YANG modules since YANG module prefixes aren't guaranteed
+      to be unique. The context node for evaluation MUST be the list node.
 </t>
 
       <t>The following tree diagram <xref target="RFC8340"/> illustrates the
@@ -182,15 +184,15 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
     </section>
 
     <section title="Error Reporting" anchor="error-reporting">
-      <t>When an input query parameter is supplied with an erroneous
+      <t>When an RPC input parameter is supplied with an erroneous
         value, an &lt;rpc-error&gt; MUST be returned containing the
         error-type value "application", the error-tag value
         "invalid-value", and MAY include the error-severity value
         "error". Additionally the error-app-tag SHOULD be set
-        containing query parameter specific error value.</t>
+        containing RPC input parameter specific error value.</t>
 
-      <section title='The "offset" Query Parameter' anchor="offset-out-of-range" toc="exclude">
-        <t>If the "offset" query parameter value supplied is larger
+      <section title='The "offset" RPC input Parameter' anchor="offset-out-of-range" toc="exclude">
+        <t>If the "offset" RPC input parameter value supplied is larger
           than the number of instances in the working result-set, the
           &lt;rpc-error&gt; MUST contain error-app-tag with value
           "offset-out-of-range".</t>
@@ -314,12 +316,12 @@ RFC: XXXX</artwork>
         <relref section="A.2" target="I-D.ietf-netconf-list-pagination"/>.</t>
     </section>
     <section title="Example Queries">
-      <section title='List pagination with all query parameters'>
+      <section title='List pagination with all RPC input parameters'>
         <t>This example mimics that <relref section="A.3.9"
           target="I-D.ietf-netconf-list-pagination"/>. In this XML example, The
           xmlns:es attribute binds the "es" prefix to the example-social module
           name. The urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
-          namespace is used for the list-pagination query parameters.
+          namespace is used for the list-pagination RPC input parameters.
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
 ]]></artwork></figure>
