@@ -161,7 +161,9 @@
       the validation rules defined in section 8.9.1 of RFC6241. Note that Prefixes in the
       "where" RPC input parameter XPath expression should but needn't be the same YANG module
       prefixes associated with the YANG modules since YANG module prefixes aren't guaranteed
-      to be unique. The context node for evaluation MUST be the list node.
+      to be unique. Prefixes used in filters have to be declared as XML namespace prefixes
+      bound to the namespace URIs of corresponding YANG modules. The context node for
+      evaluation MUST be the list node.
 </t>
 
       <t>The following tree diagram <xref target="RFC8340"/> illustrates the
