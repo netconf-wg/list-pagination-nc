@@ -266,11 +266,11 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
           <t>The XPath expression in the "where" RPC input parameter is
             evaluated according to the validation rules defined in
             <xref section="8.9.1" target="RFC6241"/>, with the context
-            node being the targeted list node.</t>
+            node being the targeted list or leaf-list node.</t>
 
           <t>Prefixes MUST be declared as XML namespace prefixes bound to the
             namespace URIs of corresponding YANG modules.  The prefix SHOULD
-            be prefix of the associated source module, as described by
+            be the prefix of the associated source module, as described by
             <xref section="7.1.4" target="RFC7950"/>.</t>
 
           <t>If the specified XPath expression is invalid, then an &lt;rpc-error&gt;
