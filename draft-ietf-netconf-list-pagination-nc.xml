@@ -165,23 +165,9 @@ urn:ietf:params:netconf:capability:list-pagination:1.0
     <section title="List Pagination for NETCONF" anchor="solution">
       <t>In order for NETCONF to support <xref target="I-D.ietf-netconf-list-pagination"/>,
       this document extends the operations &lt;get&gt;, &lt;get-config&gt; and &lt;get-data&gt;
-      to include additional input parameters and output annotations.</t>
-
-      <t>The updated operations accept a content filter parameter "where", similar to the
-      "filter" parameter of &lt;get-config&gt;, but includes nodes for "list" and
-      "leaf-list" filtering.</t>
-
-      <t>The "where" query parameter is used to specify the YANG list or leaf-list
-      that is to be retrieved. This must be a path expression used to represent a
-      list or leaf-list data node.</t>
-
-      <t>Prefixes in the "where" query parameter XPath expression MUST be the
-      YANG module prefix. If the specified XPath expression is invalid, then
-      an &lt;rpc-error&gt; is returned with error type value "application" and
-      "error-tag" value "invalid-value".</t>
-
-      <t>The following tree diagram <xref target="RFC8340"/> illustrates the
-        "ietf-netconf-list-pagination" module:</t>
+      to include additional input parameters and output annotations, as described by the
+      following tree diagram <xref target="RFC8340"/> for the "ietf-netconf-list-pagination"
+      module:</t>
       <t>
         <figure>
          <artwork><![CDATA[
@@ -197,18 +183,135 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
           defined in <xref target="RFC6241"/>.  The "get-data" augment is
           against the YANG module defined in <xref target="RFC8526"/>.</li>
       </ul>
+
+      <section title="RPC Input Parameters">
+        <t>These eight RPC input parameters, corresponding to those defined in
+          Sections 3.1 and 3.2 in <xref target="I-D.ietf-netconf-list-pagination"/>
+          are grouped under a container called "list-pagination", which is
+          only allowed to appear if the "filter" RPC input parameter targets
+          a "list" or "leaf-list" node supporting list pagination.</t>
+        <t>Per the conformance defined in <relref section="3.1"
+          target="I-D.ietf-netconf-list-pagination"/>,
+          all of these parameters MUST be supported for all "config true" lists
+          and leaf-lists, and SHOULD be supported for "config false" lists and
+          leaf-lists. A server MAY disable the support for some or all
+          "config false" lists, as described in <relref section="3.3"
+          target="I-D.ietf-netconf-list-pagination"/>.</t>
+        <t>Note that complex pagination with combination of RPC input parameters
+          may cause performance strain on constrained devices due to intensive
+          processing on both the server and the client.</t>
+
+        <section title='The "limit" RPC Input Parameter'>
+          <t>The "limit" RPC input parameter corresponds to the "limit"
+            parameter defined in <relref section="3.1.7"
+            target="I-D.ietf-netconf-list-pagination"/>.</t>
+          <t>If the limit value is invalid, i.e. not an unsigned 32-bit integer
+            greater than or equal to 1 or the string "unbounded", then an
+            &lt;rpc-error&gt; MUST be returned with the error-type
+            value "application" and error-tag value "invalid-value".</t>
+        </section>
+
+        <section title='The "offset" RPC Input Parameter'>
+          <t>The "offset" RPC input parameter corresponds to the "offset"
+            parameter defined in <relref section="3.1.5"
+            target="I-D.ietf-netconf-list-pagination"/>.</t>
+          <t>If the offset value is invalid, an &lt;rpc-error&gt;
+            MUST be returned with the error-type value "application" and
+            error-tag value "invalid-value".</t>
+          <t>If the offset value exceeds the number of entries in the
+            working result set, then the &lt;rpc-error&gt; SHOULD also
+            include the "offset-out-of-range" identity as the error-app-tag
+            value.</t>
+        </section>
+
+        <section title='The "cursor" RPC Input Parameter'>
+          <t>The "cursor" RPC input parameter corresponds to the "cursor"
+            parameter defined in <relref section="3.1.6"
+            target="I-D.ietf-netconf-list-pagination"/>. As described in
+            <relref section="3.1.5" target="I-D.ietf-netconf-list-pagination"/>
+            the server does not keep any stateful information about the "next"
+            and "previous" cursor or the current page. Due to their ephemeral
+            nature, cursor values are never cached.</t>
+          <t>If the cursor value is unknown, i.e. the key does not exist,
+            an &lt;rpc-error&gt; MUST be returned with the error-type
+            value "application" and error-tag value "invalid-value", and SHOULD
+            also include the "cursor-not-found" identity as the error-app-tag
+            value.</t>
+          <t>If the "cursor" RPC input parameter is not supported on the target
+            node, then the &lt;rpc-error&gt; MUST be returned with error-type
+            value "application" and error-tag value "operation-not-supported".</t>
+        </section>
+
+        <section title='The "direction" RPC Input Parameter'>
+          <t>The "direction" RPC input parameter corresponds to the "direction"
+            parameter defined in <relref section="3.1.4"
+            target="I-D.ietf-netconf-list-pagination"/>.</t>
+          <t>If the direction value is invalid, then an &lt;rpc-error&gt;
+             MUST be returned with the error-type value
+            "application" and error-tag value "invalid-value".</t>
+        </section>
+
+        <section title='The "sort-by" RPC Input Parameter'>
+          <t>The "sort-by" RPC input parameter corresponds to the "sort-by"
+            parameter defined in <relref section="3.1.2"
+            target="I-D.ietf-netconf-list-pagination"/>.</t>
+          <t>If the specified node identifier is invalid, then an &lt;rpc-error&gt;
+            MUST be returned with the error-type value "application" and error-tag
+            value "invalid-value".</t>
+        </section>
+
+        <section title='The "locale" RPC Input Parameter'>
+          <t>The "locale" RPC input parameter corresponds to the
+            "locale" parameter defined in <relref section="3.1.3"
+            target="I-D.ietf-netconf-list-pagination"/>.</t>
+          <t>If the specified node identifier is invalid, i.e. the locale is
+            unknown to the server, then an &lt;rpc-error&gt; MUST be
+            returned with the error-type value "application" and
+            error-tag value "invalid-value", and SHOULD also include the
+            "locale-unavailable" identity as the error-app-tag value.</t>
+        </section>
+
+        <section title='The "where" RPC Input Parameter'>
+          <t>The "where" RPC input parameter corresponds to the "where"
+            parameter defined in <relref section="3.1.1"
+            target="I-D.ietf-netconf-list-pagination"/>.</t>
+
+          <t>The XPath expression in the "where" RPC input parameter is
+            evaluated according to the validation rules defined in
+            <xref section="8.9.1" target="RFC6241"/>, with the context
+            node being the targeted list or leaf-list node.</t>
+
+          <t>Prefixes MUST be declared as XML namespace prefixes bound to the
+            namespace URIs of corresponding YANG modules.  The prefix SHOULD
+            be the prefix of the associated source module, as described by
+            <xref section="7.1.4" target="RFC7950"/>.</t>
+
+          <t>If the specified XPath expression is invalid, then an &lt;rpc-error&gt;
+            MUST be returned with the error-type value "application" and error-tag
+            value "invalid-value".</t>
+        </section>
+
+        <section title='The "sublist-limit" RPC Input Parameter'>
+          <t>The "sublist-limit" RPC input parameter corresponds to the
+            "sublist-limit" parameter defined in <relref section="3.2.1"
+            target="I-D.ietf-netconf-list-pagination"/>.</t>
+          <t>If the sublist-limit value is invalid, then an &lt;rpc-error&gt;
+            MUST be returned with the error-type value "application" and
+            error-tag value "invalid-value".</t>
+        </section>
+      </section>
     </section>
 
     <section title="Error Reporting" anchor="error-reporting">
-      <t>When an input query parameter is supplied with an erroneous
+      <t>When an RPC input parameter is supplied with an erroneous
         value, an &lt;rpc-error&gt; MUST be returned containing the
         error-type value "application", the error-tag value
         "invalid-value", and MAY include the error-severity value
         "error". Additionally the error-app-tag SHOULD be set
-        containing query parameter specific error value.</t>
+        containing RPC input parameter specific error value.</t>
 
-      <section title='The "offset" Query Parameter' anchor="offset-out-of-range" toc="exclude">
-        <t>If the "offset" query parameter value supplied is larger
+      <section title='The "offset" RPC input Parameter' anchor="offset-out-of-range" toc="exclude">
+        <t>If the "offset" RPC input parameter value supplied is larger
           than the number of instances in the working result-set, the
           &lt;rpc-error&gt; MUST contain error-app-tag with value
           "offset-out-of-range".</t>
@@ -347,12 +450,12 @@ RFC: XXXX</artwork>
         <relref section="A.2" target="I-D.ietf-netconf-list-pagination"/>.</t>
     </section>
     <section title="Example Queries">
-      <section title='List pagination with all query parameters'>
+      <section title='List pagination with all RPC input parameters'>
         <t>This example mimics that <relref section="A.3.9"
           target="I-D.ietf-netconf-list-pagination"/>. In this XML example, The
           xmlns:es attribute binds the "es" prefix to the example-social module
           name. The urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
-          namespace is used for the list-pagination query parameters.
+          namespace is used for the list-pagination RPC input parameters.
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
 ]]></artwork></figure>
