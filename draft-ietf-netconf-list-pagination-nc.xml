@@ -251,11 +251,6 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
             returned with the error-type value "application" and
             error-tag value "invalid-value", and SHOULD also include the
             "locale-unavailable" identity as the error-app-tag value.</t>
-          <!-- not needed anymore with new YANG 'when' expression? remove from -rc draft too?
-          <t>If "locale" is supplied but not "sort-by", the &lt;rpc-error&gt;
-            MUST have the error-type "application" and error-tag value
-            "invalid-value".</t>
-          -->
         </section>
 
         <section title='The "where" RPC Input Parameter'>
