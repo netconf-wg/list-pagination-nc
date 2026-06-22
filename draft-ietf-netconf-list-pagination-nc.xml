@@ -205,23 +205,12 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
           <t>The "limit" RPC input parameter corresponds to the "limit"
             parameter defined in <relref section="3.1.7"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the limit value is invalid, i.e. not an unsigned 32-bit integer
-            greater than or equal to 1 or the string "unbounded", then an
-            &lt;rpc-error&gt; MUST be returned with the error-type
-            value "application" and error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "offset" RPC Input Parameter'>
           <t>The "offset" RPC input parameter corresponds to the "offset"
             parameter defined in <relref section="3.1.5"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the offset value is invalid, an &lt;rpc-error&gt;
-            MUST be returned with the error-type value "application" and
-            error-tag value "invalid-value".</t>
-          <t>If the offset value exceeds the number of entries in the
-            working result set, then the &lt;rpc-error&gt; SHOULD also
-            include the "offset-out-of-range" identity as the error-app-tag
-            value.</t>
         </section>
 
         <section title='The "cursor" RPC Input Parameter'>
@@ -232,89 +221,45 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
             the server does not keep any stateful information about the "next"
             and "previous" cursor or the current page. Due to their ephemeral
             nature, cursor values are never cached.</t>
-          <t>If the cursor value is unknown, i.e. the key does not exist,
-            an &lt;rpc-error&gt; MUST be returned with the error-type
-            value "application" and error-tag value "invalid-value", and SHOULD
-            also include the "cursor-not-found" identity as the error-app-tag
-            value.</t>
-          <t>If the "cursor" RPC input parameter is not supported on the target
-            node, then the &lt;rpc-error&gt; MUST be returned with error-type
-            value "application" and error-tag value "operation-not-supported".</t>
         </section>
 
         <section title='The "direction" RPC Input Parameter'>
           <t>The "direction" RPC input parameter corresponds to the "direction"
             parameter defined in <relref section="3.1.4"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the direction value is invalid, then an &lt;rpc-error&gt;
-             MUST be returned with the error-type value
-            "application" and error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "sort-by" RPC Input Parameter'>
           <t>The "sort-by" RPC input parameter corresponds to the "sort-by"
             parameter defined in <relref section="3.1.2"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the specified node identifier is invalid, then an &lt;rpc-error&gt;
-            MUST be returned with the error-type value "application" and error-tag
-            value "invalid-value".</t>
         </section>
 
         <section title='The "locale" RPC Input Parameter'>
           <t>The "locale" RPC input parameter corresponds to the
             "locale" parameter defined in <relref section="3.1.3"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the specified node identifier is invalid, i.e. the locale is
-            unknown to the server, then an &lt;rpc-error&gt; MUST be
-            returned with the error-type value "application" and
-            error-tag value "invalid-value", and SHOULD also include the
-            "locale-unavailable" identity as the error-app-tag value.</t>
         </section>
 
         <section title='The "where" RPC Input Parameter'>
           <t>The "where" RPC input parameter corresponds to the "where"
             parameter defined in <relref section="3.1.1"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-
           <t>The XPath expression in the "where" RPC input parameter is
             evaluated according to the validation rules defined in
             <xref section="8.9.1" target="RFC6241"/>, with the context
             node being the targeted list or leaf-list node.</t>
-
           <t>Prefixes MUST be declared as XML namespace prefixes bound to the
             namespace URIs of corresponding YANG modules.  The prefix SHOULD
             be the prefix of the associated source module, as described by
             <xref section="7.1.4" target="RFC7950"/>.</t>
-
-          <t>If the specified XPath expression is invalid, then an &lt;rpc-error&gt;
-            MUST be returned with the error-type value "application" and error-tag
-            value "invalid-value".</t>
         </section>
 
         <section title='The "sublist-limit" RPC Input Parameter'>
           <t>The "sublist-limit" RPC input parameter corresponds to the
             "sublist-limit" parameter defined in <relref section="3.2.1"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the sublist-limit value is invalid, then an &lt;rpc-error&gt;
-            MUST be returned with the error-type value "application" and
-            error-tag value "invalid-value".</t>
         </section>
-      </section>
-    </section>
-
-    <section title="Error Reporting" anchor="error-reporting">
-      <t>When an RPC input parameter is supplied with an erroneous
-        value, an &lt;rpc-error&gt; MUST be returned containing the
-        error-type value "application", the error-tag value
-        "invalid-value", and MAY include the error-severity value
-        "error". Additionally the error-app-tag SHOULD be set
-        containing RPC input parameter specific error value.</t>
-
-      <section title='The "offset" RPC input Parameter' anchor="offset-out-of-range" toc="exclude">
-        <t>If the "offset" RPC input parameter value supplied is larger
-          than the number of instances in the working result-set, the
-          &lt;rpc-error&gt; MUST contain error-app-tag with value
-          "offset-out-of-range".</t>
       </section>
     </section>
 
