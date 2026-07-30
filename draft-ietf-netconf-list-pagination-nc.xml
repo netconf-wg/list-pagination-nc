@@ -323,7 +323,8 @@ name: ietf-list-pagination-nc
 Maintained by IANA?  N
 namespace: urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
 prefix: pgnc
-Reference: RFCXXXX</artwork>
+Reference: RFCXXXX
+           </artwork>
           </figure>
         </t>
       </section>
