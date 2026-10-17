@@ -133,7 +133,7 @@
 
     <section title="List Pagination Capability">
       <section title="Description">
-        <t>The :list-pagination capability indicates that the client supports
+        <t>The :list-pagination capability indicates that the server supports
         paging over optionally filtered and/or sorted entries of YANG modeled
         "list" and "leaf-list" nodes.</t>
       </section>
@@ -331,7 +331,7 @@ Reference: RFCXXXX
     </section>
 
     <section anchor="security" title="Security Considerations">
-      <section title="The &quot;ietf-netconf-list-pagination&quot; YANG Module">
+      <section title="The &quot;ietf-netconf-list-pagination-nc&quot; YANG Module">
         <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
 
         <t>The YANG module specified in this document defines a schema for data
