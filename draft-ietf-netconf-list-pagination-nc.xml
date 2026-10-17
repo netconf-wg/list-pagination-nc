@@ -398,6 +398,11 @@ Reference: RFCXXXX
           xmlns:es attribute binds the "es" prefix to the example-social module
           name. The urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
           namespace is used for the list-pagination RPC input parameters.
+
+          The query targets the running datastore via the 'get' operation. The
+          parameter specifies the target path to the 'member' list within the
+          'example-social' module, filtering for members whose joined timestamp
+          starts with '2020'.
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
 ]]></artwork></figure>
