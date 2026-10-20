@@ -14,7 +14,7 @@
       <offset>2</offset>
       <limit>2</limit>
       <sublist-limit>1</sublist-limit>
-      <locale>sv_US</locale>
+      <locale>sv_SE</locale>
     </list-pagination>
   </get>
 </rpc>
