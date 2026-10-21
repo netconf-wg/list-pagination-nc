@@ -269,7 +269,7 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
       datastore contents by a server.</t>
 
       <t>This module has references to <xref target="RFC6241"/>,
-      <xref target="RFC6991"/>, and <xref target="RFC8342"/>.</t>
+      <xref target="RFC9911"/>, and <xref target="RFC8342"/>.</t>
 
       <t>
         <figure>
