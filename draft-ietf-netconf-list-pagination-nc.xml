@@ -217,7 +217,7 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
           <t>The "cursor" RPC input parameter corresponds to the "cursor"
             parameter defined in <relref section="3.1.6"
             target="I-D.ietf-netconf-list-pagination"/>. As described in
-            <relref section="3.1.5" target="I-D.ietf-netconf-list-pagination"/>
+            <relref section="3.1.6" target="I-D.ietf-netconf-list-pagination"/>
             the server does not keep any stateful information about the "next"
             and "previous" cursor or the current page. Due to their ephemeral
             nature, cursor values are never cached.</t>
