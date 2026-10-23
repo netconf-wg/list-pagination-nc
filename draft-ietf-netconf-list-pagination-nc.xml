@@ -133,7 +133,7 @@
 
     <section title="List Pagination Capability">
       <section title="Description">
-        <t>The :list-pagination capability indicates that the client supports
+        <t>The :list-pagination capability indicates that the server supports
         paging over optionally filtered and/or sorted entries of YANG modeled
         "list" and "leaf-list" nodes.</t>
       </section>
@@ -268,9 +268,8 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
       definitions within groupings, which are not meant to be implemented as
       datastore contents by a server.</t>
 
-      <t>This module has normative references to <xref target="RFC6241"/>,
-      <xref target="RFC6243"/>, <xref target="RFC6991"/>, and <xref
-      target="RFC8342"/>.</t>
+      <t>This module has references to <xref target="RFC6241"/>,
+      <xref target="RFC9911"/>, and <xref target="RFC8342"/>.</t>
 
       <t>
         <figure>
@@ -322,7 +321,7 @@ XML: N/A, the requested URI is an XML namespace.</artwork>
 name: ietf-list-pagination-nc
 Maintained by IANA?  N
 namespace: urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc
-prefix: pgnc
+prefix: lpgnc
 Reference: RFCXXXX
            </artwork>
           </figure>
@@ -331,8 +330,8 @@ Reference: RFCXXXX
     </section>
 
     <section anchor="security" title="Security Considerations">
-      <section title="The &quot;ietf-netconf-list-pagination&quot; YANG Module">
-        <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
+      <section title="The &quot;ietf-netconf-list-pagination-nc&quot; YANG Module">
+        <t>This section follows the template defined in <xref section="3.7.1" target="RFC9907"/>.</t>
 
         <t>The YANG module specified in this document defines a schema for data
         that is designed to be accessed via network management protocols such
@@ -363,7 +362,6 @@ Reference: RFCXXXX
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml"/> <!-- XML Registry -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6241.xml"/> <!-- NETCONF -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6242.xml"/> <!-- NC over SSH -->
-      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6243.xml"/> <!-- with-defaults -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6991.xml"/> <!-- YANG Types-->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml"/> <!-- YANG -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8040.xml"/> <!-- RESTCONF -->
