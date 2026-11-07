@@ -8,13 +8,13 @@
     <list-pagination
       xmlns="urn:ietf:params:xml:ns:yang:ietf-list-pagination-nc">
       <where 
-        xmlns:es="https://example.com/ns/example-social">//es:stats[starts-with(joined,'2020')]</where>
-      <sort-by>joined</sort-by>
+        xmlns:es="https://example.com/ns/example-social">//es:stats[starts-with(es:joined,'2020')]</where>
+      <sort-by>stats/joined</sort-by>
       <direction>backwards</direction>
       <offset>2</offset>
       <limit>2</limit>
       <sublist-limit>1</sublist-limit>
-      <locale>sv-SE</locale>
+      <locale>en-US</locale>
     </list-pagination>
   </get-data>
 </rpc>
