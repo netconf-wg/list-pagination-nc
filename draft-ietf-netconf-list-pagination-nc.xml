@@ -166,7 +166,7 @@ urn:ietf:params:netconf:capability:list-pagination:1.0
       <t>In order for NETCONF to support <xref target="I-D.ietf-netconf-list-pagination"/>,
       this document extends the operations &lt;get&gt;, &lt;get-config&gt; and &lt;get-data&gt;
       to include additional input parameters and output annotations, as described by the
-      following tree diagram <xref target="RFC8340"/> for the "ietf-netconf-list-pagination"
+      following tree diagram <xref target="RFC8340"/> for the "ietf-netconf-list-pagination-nc"
       module:</t>
       <t>
         <figure>
