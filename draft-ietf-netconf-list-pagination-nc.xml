@@ -89,7 +89,9 @@
       <t>While the pagination mechanism defined in this document is designed
       for the NETCONF protocol <xref target="RFC6241"/>, the augmented RPCs
       MAY be used by the RESTCONF protocol <xref target="RFC8040"/> if the
-      RESTCONF server implements the "ietf-list-pagination-nc" module.</t>
+      RESTCONF server implements the "ietf-list-pagination-nc" module. See
+      RPC operation usage example in section 3.6 of <xref target="RFC8040"/>
+      </t>
 
       <t>The YANG data model in this document conforms to the Network
       Management Datastore Architecture defined in <xref target="RFC8342"/></t>
