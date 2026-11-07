@@ -191,12 +191,12 @@ INSERT_TEXT_FROM_FILE(includes/tree-ietf-list-pagination-nc.txt)
           only allowed to appear if the "filter" RPC input parameter targets
           a "list" or "leaf-list" node supporting list pagination.</t>
         <t>Per the conformance defined in <relref section="3.1"
-          target="I-D.ietf-netconf-list-pagination"/>,
-          all of these parameters MUST be supported for all "config true" lists
-          and leaf-lists, and SHOULD be supported for "config false" lists and
-          leaf-lists. A server MAY disable the support for some or all
-          "config false" lists, as described in <relref section="3.3"
-          target="I-D.ietf-netconf-list-pagination"/>.</t>
+          target="I-D.ietf-netconf-list-pagination"/>, when all features associated
+          with RPC input parameters are supported, all of these RPC input parameters
+          MUST be supported for all "config true" lists and leaf-lists, and SHOULD
+          be supported for "config false" lists and leaf-lists. A server MAY disable
+          the support for some or all "config false" lists, as described in
+          <relref section="3.3" target="I-D.ietf-netconf-list-pagination"/>.</t>
         <t>Note that complex pagination with combination of RPC input parameters
           may cause performance strain on constrained devices due to intensive
           processing on both the server and the client.</t>
